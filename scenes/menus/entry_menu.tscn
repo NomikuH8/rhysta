@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7f80k5i7w6e"]
+
+[ext_resource type="Texture2D" uid="uid://do5t8hv5gxmie" path="res://icon.svg" id="1_pt5sm"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_3eyh5"]
+device = -1
+keycode = 80
+unicode = 112
+
+[sub_resource type="Shortcut" id="Shortcut_sirlv"]
+events = [SubResource("InputEventKey_3eyh5")]
+
+[node name="EntryMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_pt5sm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_sirlv")
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
