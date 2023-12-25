@@ -1,7 +1,6 @@
 extends Control
 
 
-@export var separator_scene: PackedScene
 @export var toggle_option_scene: PackedScene
 @export var dropdown_option_scene: PackedScene
 @export var range_option_scene: PackedScene
@@ -53,8 +52,9 @@ func render_options():
 					instance.sector_name = sector_name
 					instance.key_name = option_name
 					instance.default_value = value
-					instance.connect("value_changed", _on_option_value_changed)
+					instance.connect("option_value_changed", _on_option_value_changed)
 					options_container.add_child(instance)
+					
 				Options.OptionType.DROPDOWN:
 					var instance = dropdown_option_scene.instantiate()
 					instance.type = option["type"]
@@ -62,7 +62,19 @@ func render_options():
 					instance.key_name = option_name
 					instance.default_value = value
 					instance.dropdown_values = option["dropdown_values"]
-					instance.connect("value_changed", _on_option_value_changed)
+					instance.connect("option_value_changed", _on_option_value_changed)
+					options_container.add_child(instance)
+					
+				Options.OptionType.RANGE:
+					var instance = range_option_scene.instantiate()
+					instance.type = option["type"]
+					instance.sector_name = sector_name
+					instance.key_name = option_name
+					instance.default_value = value
+					instance.slider_min_value = option["slider_min_value"]
+					instance.slider_max_value = option["slider_max_value"]
+					instance.slider_step = ["slider_step"]
+					instance.connect("option_value_changed", _on_option_value_changed)
 					options_container.add_child(instance)
 
 

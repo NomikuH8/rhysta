@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://vkka713wjfg7"]
+
+[ext_resource type="Script" path="res://scripts/menus/options/menu_option.gd" id="1_b1p3e"]
+
+[node name="RangeOption" type="MarginContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -16.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_b1p3e")
+
+[node name="MainContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="RangeSlider" type="HSlider" parent="MainContainer/HBoxContainer2"]
+layout_mode = 2
+
+[connection signal="drag_ended" from="MainContainer/HBoxContainer2/RangeSlider" to="." method="_on_range_slider_drag_ended"]
