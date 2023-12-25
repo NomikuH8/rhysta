@@ -10,7 +10,7 @@ extends Control
 @onready var animation_player = $AnimationPlayer
 @onready var backdrop = $Backdrop
 @onready var sidebar_container = $PanelContainer/HBoxContainer/ScrollContainer/SidebarContainer
-@onready var options_container = $PanelContainer/HBoxContainer/VBoxContainer/OptionsContainer
+@onready var options_container = $PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer/OptionsContainer
 
 
 var mouse_over_backdrop: bool = false
@@ -40,30 +40,37 @@ func render_options():
 		for option_key in option_config["options"].keys():
 			var option_name = option_key
 			var option = option_config["options"][option_key]
-			var option_in_config = Options.config[sector_name][option_name]
-			var option_default_value = option["default_value"]
-			var value = option_in_config if option_in_config != null else option_default_value
+			var value = Options.config.get_value(
+				sector_name,
+				option_name,
+				option["default_value"]
+			)
 			
 			match option["type"]:
 				Options.OptionType.TOGGLE:
 					var instance = toggle_option_scene.instantiate()
+					instance.type = option["type"]
 					instance.sector_name = sector_name
 					instance.key_name = option_name
 					instance.default_value = value
 					instance.connect("value_changed", _on_option_value_changed)
 					options_container.add_child(instance)
+				Options.OptionType.DROPDOWN:
+					var instance = dropdown_option_scene.instantiate()
+					instance.type = option["type"]
+					instance.sector_name = sector_name
+					instance.key_name = option_name
+					instance.default_value = value
+					instance.dropdown_values = option["dropdown_values"]
+					instance.connect("value_changed", _on_option_value_changed)
+					options_container.add_child(instance)
 
 
-func _on_option_value_changed(sector_name: String, key_name: String, value: Variant):
-	var sector = Options.config[sector_name]
-	print(sector)
-	if sector == null:
-		Options.config[sector_name] = {}
-		sector = Options.config[sector_name]
-	
-	Options.config[sector_name][key_name] = value
+func _on_option_value_changed(sector_name: String, key_name: String, _type: Options.OptionType, value: Variant):
+	Options.config.set_value(sector_name, key_name, value)
 	
 	Options.save_config()
+	Options.apply_config()
 
 
 func _on_options_open_close(is_open: bool):

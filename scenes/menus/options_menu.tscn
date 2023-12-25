@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://f3t418hb5mfk"]
+[gd_scene load_steps=8 format=3 uid="uid://f3t418hb5mfk"]
 
 [ext_resource type="Script" path="res://scripts/menus/options/options_menu.gd" id="1_ifafy"]
 [ext_resource type="PackedScene" uid="uid://6mxdluhknu2o" path="res://scenes/menus/options/toggle_option.tscn" id="2_8mwrm"]
 [ext_resource type="Texture2D" uid="uid://do5t8hv5gxmie" path="res://icon.svg" id="2_oiy0v"]
+[ext_resource type="PackedScene" uid="uid://bsq737qhu1ira" path="res://scenes/menus/options/dropdown_option.tscn" id="3_0ga5r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvgw4"]
 bg_color = Color(0.172549, 0.172549, 0.172549, 1)
@@ -48,6 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ifafy")
 toggle_option_scene = ExtResource("2_8mwrm")
+dropdown_option_scene = ExtResource("3_0ga5r")
 
 [node name="Backdrop" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -96,9 +98,13 @@ layout_mode = 2
 text = "Rhysta options"
 horizontal_alignment = 1
 
-[node name="OptionsContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="OptionsContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

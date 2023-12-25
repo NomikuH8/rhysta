@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://6mxdluhknu2o"]
+[gd_scene load_steps=2 format=3 uid="uid://bsq737qhu1ira"]
 
-[ext_resource type="Script" path="res://scripts/menus/options/menu_option.gd" id="1_rhtki"]
+[ext_resource type="Script" path="res://scripts/menus/options/menu_option.gd" id="1_6weu1"]
 
-[node name="ToggleOption" type="MarginContainer"]
+[node name="DropdownOption" type="MarginContainer"]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -17.0
-offset_bottom = 17.0
+offset_top = -16.5
+offset_bottom = 16.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -17,7 +17,7 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
-script = ExtResource("1_rhtki")
+script = ExtResource("1_6weu1")
 
 [node name="MainContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -36,7 +36,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 alignment = 2
 
-[node name="CheckButton" type="CheckButton" parent="MainContainer/HBoxContainer2"]
+[node name="OptionButton" type="OptionButton" parent="MainContainer/HBoxContainer2"]
 layout_mode = 2
 
-[connection signal="toggled" from="MainContainer/HBoxContainer2/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="item_selected" from="MainContainer/HBoxContainer2/OptionButton" to="." method="_on_option_button_item_selected"]
