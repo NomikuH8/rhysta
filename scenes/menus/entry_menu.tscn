@@ -1,5 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7f80k5i7w6e"]
+[gd_scene load_steps=6 format=3 uid="uid://b7f80k5i7w6e"]
 
+[ext_resource type="PackedScene" uid="uid://f3t418hb5mfk" path="res://scenes/menus/options_menu.tscn" id="1_chh0a"]
+[ext_resource type="Script" path="res://scripts/menus/entry_menu/entry_menu.gd" id="1_f2gru"]
 [ext_resource type="Texture2D" uid="uid://do5t8hv5gxmie" path="res://icon.svg" id="1_pt5sm"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_3eyh5"]
@@ -17,6 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_f2gru")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -54,3 +57,8 @@ text = "Play"
 [node name="OptionsButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("1_chh0a")]
+layout_mode = 1
+
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]

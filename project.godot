@@ -14,12 +14,16 @@ config/name="rhysta"
 config/description="rhysta, the only rhythm game station you need."
 config/version="1.0.0"
 run/main_scene="res://scenes/menus/entry_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="rhysta"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
+ModManager="*res://scripts/autoloads/mod_manager.gd"
 GameShortcuts="*res://scripts/autoloads/game_shortcuts.gd"
+Options="*res://scripts/autoloads/options.gd"
 
 [display]
 
@@ -27,6 +31,7 @@ window/size/viewport_width=1024
 window/size/viewport_height=768
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [input]
 

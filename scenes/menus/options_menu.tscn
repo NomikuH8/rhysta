@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://f3t418hb5mfk"]
+
+[ext_resource type="Script" path="res://scripts/menus/options/options_menu.gd" id="1_ifafy"]
+[ext_resource type="PackedScene" uid="uid://6mxdluhknu2o" path="res://scenes/menus/options/toggle_option.tscn" id="2_8mwrm"]
+[ext_resource type="Texture2D" uid="uid://do5t8hv5gxmie" path="res://icon.svg" id="2_oiy0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvgw4"]
+bg_color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[sub_resource type="Animation" id="Animation_dvekt"]
+resource_name = "options_open"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Backdrop:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PanelContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.378929, 0.366022),
+"update": 0,
+"values": [Vector2(-400, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_62hda"]
+_data = {
+"options_open": SubResource("Animation_dvekt")
+}
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ifafy")
+toggle_option_scene = ExtResource("2_8mwrm")
+
+[node name="Backdrop" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -400.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jvgw4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="SidebarContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("2_oiy0v")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Rhysta options"
+horizontal_alignment = 1
+
+[node name="OptionsContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_62hda")
+}
+
+[connection signal="mouse_entered" from="Backdrop" to="." method="_on_backdrop_mouse_entered"]
+[connection signal="mouse_exited" from="Backdrop" to="." method="_on_backdrop_mouse_exited"]
