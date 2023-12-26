@@ -78,11 +78,6 @@ func render_options():
 					options_container.add_child(instance)
 				
 				Options.OptionType.CUSTOM:
-					var margin_container = MarginContainer.new()
-					margin_container.add_theme_constant_override("margin_top", 5)
-					margin_container.add_theme_constant_override("margin_bottom", 5)
-					margin_container.add_theme_constant_override("margin_left", 15)
-					margin_container.add_theme_constant_override("margin_right", 15)
 					var scene = Options.modules_path + sector_name + "/" + option["custom_scene"]
 					var loaded_scene = load(scene)
 					var instance: Node
@@ -96,6 +91,12 @@ func render_options():
 					if "default_value" in instance: instance.default_value = value
 					if "option_value_changed" in instance:
 						instance.connect("option_value_changed", _on_option_value_changed)
+					
+					var margin_container = MarginContainer.new()
+					margin_container.add_theme_constant_override("margin_top", 5)
+					margin_container.add_theme_constant_override("margin_bottom", 5)
+					margin_container.add_theme_constant_override("margin_left", 15)
+					margin_container.add_theme_constant_override("margin_right", 15)
 					
 					margin_container.add_child(instance)
 					options_container.add_child(margin_container)
