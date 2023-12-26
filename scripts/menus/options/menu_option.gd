@@ -47,4 +47,5 @@ func _on_option_button_item_selected(index: int):
 
 func _on_range_slider_drag_ended(value_changed: bool):
 	if value_changed:
-		option_value_changed.emit(sector_name, key_name, type, $MainContainer/HBoxContainer2/RangeSlider.value)
+		var slider: HSlider = $MainContainer/HBoxContainer2/RangeSlider
+		option_value_changed.emit(sector_name, key_name, type, slider.value)
