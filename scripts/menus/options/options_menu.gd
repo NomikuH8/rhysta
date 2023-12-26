@@ -73,7 +73,7 @@ func render_options():
 					instance.default_value = value
 					instance.slider_min_value = option["slider_min_value"]
 					instance.slider_max_value = option["slider_max_value"]
-					instance.slider_step = ["slider_step"]
+					instance.slider_step = option["slider_step"]
 					instance.connect("option_value_changed", _on_option_value_changed)
 					options_container.add_child(instance)
 
