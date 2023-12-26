@@ -1,9 +1,8 @@
 extends Node
 
 
-#var modules_path = "user://modules"
 var modules_path = "res://modules"
-var loaded_mods: Array[String] = []
+var loaded_mods: Array[Dictionary] = []
 
 
 func _ready():
@@ -29,7 +28,16 @@ func reload_modules():
 			file_name = dir.get_next()
 			continue
 		
-		loaded_mods.push_back(file_name)
+		var config_path = globalized_modules_path + "/" + file_name + "/config.gd"
+		var script = load(config_path).new()
+		if not script.config["enabled"]:
+			file_name = dir.get_next()
+			continue
+		
+		loaded_mods.push_back({
+			"file_name": file_name,
+			"config": script.config
+		})
 		print("Imported module " + file_name)
 		file_name = dir.get_next()
 	dir.list_dir_end()

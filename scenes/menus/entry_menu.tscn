@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7f80k5i7w6e"]
+[gd_scene load_steps=11 format=3 uid="uid://b7f80k5i7w6e"]
 
 [ext_resource type="PackedScene" uid="uid://f3t418hb5mfk" path="res://scenes/menus/options_menu.tscn" id="1_chh0a"]
 [ext_resource type="Script" path="res://scripts/menus/entry_menu/entry_menu.gd" id="1_f2gru"]
 [ext_resource type="Texture2D" uid="uid://do5t8hv5gxmie" path="res://icon.svg" id="1_pt5sm"]
+[ext_resource type="PackedScene" uid="uid://b3vnxuo6k2hg8" path="res://scenes/menus/entry_menu/entry_button.tscn" id="2_kfqg7"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_3eyh5"]
 device = -1
@@ -12,6 +13,21 @@ unicode = 112
 [sub_resource type="Shortcut" id="Shortcut_sirlv"]
 events = [SubResource("InputEventKey_3eyh5")]
 
+[sub_resource type="InputEventKey" id="InputEventKey_ndqh2"]
+device = -1
+keycode = 80
+unicode = 112
+
+[sub_resource type="Shortcut" id="Shortcut_fvf2r"]
+events = [SubResource("InputEventKey_ndqh2")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ygsri"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_tggd6"]
+events = [SubResource("InputEventKey_ygsri")]
+
 [node name="EntryMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -20,6 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_f2gru")
+entry_button = ExtResource("2_kfqg7")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -45,20 +62,51 @@ alignment = 1
 layout_mode = 2
 texture = ExtResource("1_pt5sm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer"]
+[node name="FirstContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/FirstContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_sirlv")
 text = "Play"
 
-[node name="OptionsButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/FirstContainer"]
 layout_mode = 2
 text = "Options"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/FirstContainer"]
+layout_mode = 2
+text = "Exit"
+
+[node name="SecondContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SingleplayerButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/SecondContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_fvf2r")
+text = "Singleplayer"
+
+[node name="MultiplayerButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/SecondContainer"]
+layout_mode = 2
+disabled = true
+text = "Multiplayer"
+
+[node name="BackButton" type="Button" parent="CenterContainer/MarginContainer/HBoxContainer/SecondContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_tggd6")
+text = "Back"
+
+[node name="ThirdContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
 
 [node name="OptionsMenu" parent="." instance=ExtResource("1_chh0a")]
 layout_mode = 1
 
-[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/FirstContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/FirstContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/FirstContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/SecondContainer/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/HBoxContainer/SecondContainer/BackButton" to="." method="_on_back_button_pressed"]

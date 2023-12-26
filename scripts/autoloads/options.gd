@@ -11,7 +11,7 @@ enum OptionType {
 
 var modules_path = "res://modules/"
 var options_config_name = "/options_config.gd"
-var config_path = "user://rhysta_config.cfg"
+var config_path = "res://rhysta_config.cfg"
 
 var rhysta_config_section = "rhysta"
 var config = ConfigFile.new()
@@ -79,10 +79,10 @@ func load_options():
 		# if the mod is something like osu_standard,
 		# the options_config file will be something like:
 		# res://modules/osu_standard/options_config.gd
-		var script = load(modules_path + mod + options_config_name).new()
+		var script = load(modules_path + mod["file_name"] + options_config_name).new()
 		
 		var mod_options = {
-			"name": mod,
+			"name": mod["config"]["display_name"],
 			"options": script.options_config
 		}
 		options_config.push_back(mod_options)
