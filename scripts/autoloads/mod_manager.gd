@@ -1,7 +1,8 @@
 extends Node
 
 
-var modules_path = "user://modules"
+#var modules_path = "user://modules"
+var modules_path = "res://modules"
 var loaded_mods: Array[String] = []
 
 
