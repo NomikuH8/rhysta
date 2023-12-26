@@ -89,7 +89,7 @@ provide to it:
 - `type`: type of the option, generally CUSTOM
 - `sector_name`: your mod name, it's the sector in the ConfigFile
 - `key_name`: your option name, it's the key in the ConfigFile
-- `default_value`: default value provided in options_config
+- `default_value`: default value provided in options_config or value in rhysta config
 - `option_value_changed`: signal that emits (sector_name, key_name, type, value). If you don't have
 this signal, you'll have to save and apply the settings from inside your custom scene
 
