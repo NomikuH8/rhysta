@@ -76,6 +76,29 @@ func render_options():
 					instance.slider_step = option["slider_step"]
 					instance.connect("option_value_changed", _on_option_value_changed)
 					options_container.add_child(instance)
+				
+				Options.OptionType.CUSTOM:
+					var margin_container = MarginContainer.new()
+					margin_container.add_theme_constant_override("margin_top", 5)
+					margin_container.add_theme_constant_override("margin_bottom", 5)
+					margin_container.add_theme_constant_override("margin_left", 15)
+					margin_container.add_theme_constant_override("margin_right", 15)
+					var scene = Options.modules_path + sector_name + "/" + option["custom_scene"]
+					var loaded_scene = load(scene)
+					var instance: Node
+					if loaded_scene.can_instantiate():
+						instance = loaded_scene.instantiate()
+					else: continue
+					
+					if "type" in instance: instance.type = option["type"]
+					if "sector_name" in instance: instance.sector_name = sector_name
+					if "key_name" in instance: instance.key_name = option_name
+					if "default_value" in instance: instance.default_value = value
+					if "option_value_changed" in instance:
+						instance.connect("option_value_changed", _on_option_value_changed)
+					
+					margin_container.add_child(instance)
+					options_container.add_child(margin_container)
 
 
 func _on_option_value_changed(sector_name: String, key_name: String, _type: Options.OptionType, value: Variant):

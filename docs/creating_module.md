@@ -21,10 +21,24 @@ Example of not allowed name:
 	Sometimes you may need to parametrize something as a setting, like hit
 lighting in osu standard for example, so here is how to do it:
 
+	You'll need to create a file called "options_config.json". It will hold
+all the options and it's possible values.
+
 There's 4 types of options:
 	- Toggle (for binary options)
 	- Dropdown (for multiple options)
 	- Range (for float or integer options)
-	- Custom (still in development)
+	- Custom (if the others don't suit your needs)
+
+### Toggle
+
+	Toggle has only two states, on and off. It's syntax is (vsync example):
+	
+	```json
+	"vsync": {
+		"default_value": false,
+		"type": OptionType.TOGGLE
+	}
+	```
 
 # Doc still in development
