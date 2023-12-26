@@ -3,17 +3,8 @@
 
 ## File Structure
 
-Inside the `res://modules` folder, create a folder with a unique name for your mod.
-The unique name can't contain any dot (.). This is because rhysta takes the mod name from
-the pck or zip file. Prefer pck over zip files.
-
-Example of allowed names:
-- osu_standard.pck
-- taiko_no_tatsujin.zip
-- sound_voltex.pck
-
-Example of not allowed name:
-- etterna_v0.41.pck
+Inside the `res://modules` folder, create a folder with a unique name in
+snake_case for your mod.
 
 
 ## Module Options
@@ -101,5 +92,14 @@ provide to it:
 - `default_value`: default value provided in options_config
 - `option_value_changed`: signal that emits (sector_name, key_name, type, value). If you don't have
 this signal, you'll have to save and apply the settings from inside your custom scene
+
+
+## Module Distribution
+
+When your module is finished, it's time to distribute it. Create a repo if you
+didn't do it already and publish as a release (in .zip please)
+
+You may open a Github issue in NomikuH8/rhysta for me to test your module,
+and put it in the module list 
 
 # doc still under development
