@@ -33,6 +33,10 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
+[dotnet]
+
+project/assembly_name="rhysta"
+
 [input]
 
 open_options={

@@ -2,15 +2,15 @@ extends Node
 
 
 enum OptionType {
-	RANGE,
-	DROPDOWN,
 	TOGGLE,
+	DROPDOWN,
+	RANGE,
 	CUSTOM
 }
 
 
 var modules_path = "res://modules/"
-var options_config_name = "/options_config.json"
+var options_config_name = "/options_config.gd"
 var config_path = "user://rhysta_config.cfg"
 
 var rhysta_config_section = "rhysta"
@@ -78,14 +78,11 @@ func load_options():
 	for mod in ModManager.loaded_mods:
 		# if the mod is something like osu_standard,
 		# the options_config file will be something like:
-		# res://modules/osu_standard/options_config.json
-		var mod_options_config_file = FileAccess.open(
-			modules_path + mod + options_config_name,
-			FileAccess.READ
-		)
+		# res://modules/osu_standard/options_config.gd
+		var script = load(modules_path + mod + options_config_name).new()
 		
 		var mod_options = {
 			"name": mod,
-			"options": JSON.parse_string(mod_options_config_file.get_as_text())
+			"options": script.options_config
 		}
 		options_config.push_back(mod_options)
