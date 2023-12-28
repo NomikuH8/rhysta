@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+SceneChanger="*res://scripts/autoloads/scene_changer.gd"
 ModManager="*res://scripts/autoloads/mod_manager.gd"
 GameShortcuts="*res://scripts/autoloads/game_shortcuts.gd"
 Options="*res://scripts/autoloads/options.gd"
