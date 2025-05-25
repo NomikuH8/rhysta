@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b3vnxuo6k2hg8"]
 
-[ext_resource type="Script" path="res://scripts/menus/entry_menu/entry_button.gd" id="1_473uf"]
+[ext_resource type="Script" uid="uid://ebcvc45d7inx" path="res://scripts/menus/entry_menu/entry_button.gd" id="1_473uf"]
 
 [node name="EntryButton" type="Button"]
 script = ExtResource("1_473uf")

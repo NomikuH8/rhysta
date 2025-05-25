@@ -1,0 +1,3 @@
+[submodule "modules/osu_standard"]
+	path = modules/osu_standard
+	url = https://github.com/NomikuH8/rhysta-osu_standard.git

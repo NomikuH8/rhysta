@@ -18,6 +18,7 @@ var config = ConfigFile.new()
 
 var options_config: Array[Dictionary] = [
 	{
+		"display_name": "Rhysta",
 		"name": "rhysta",
 		"options": {
 			"window_mode": {
@@ -50,6 +51,7 @@ func save_config():
 func load_config():
 	var err = config.load(config_path)
 	if err != OK:
+		push_error(err)
 		return
 	
 	apply_config()
@@ -82,7 +84,8 @@ func load_options():
 		var script = load(modules_path + mod["file_name"] + options_config_name).new()
 		
 		var mod_options = {
-			"name": mod["config"]["display_name"],
+			"display_name": mod["config"]["display_name"],
+			"name": mod["file_name"],
 			"options": script.options_config
 		}
 		options_config.push_back(mod_options)

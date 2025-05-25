@@ -4,7 +4,7 @@ extends Node
 signal options_open_close(is_open: bool)
 
 
-var options_openned: bool = false
+var options_opened: bool = false
 
 
 func _input(event):
@@ -13,10 +13,10 @@ func _input(event):
 
 
 func open_or_close_options():
-	options_openned = not options_openned
-	options_open_close.emit(options_openned)
+	options_opened = not options_opened
+	options_open_close.emit(options_opened)
 
 
 func close_options():
-	options_openned = false
-	options_open_close.emit(options_openned)
+	options_opened = false
+	options_open_close.emit(options_opened)

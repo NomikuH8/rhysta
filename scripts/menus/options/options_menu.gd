@@ -16,7 +16,7 @@ var mouse_over_backdrop: bool = false
 
 
 func _ready():
-	visible = GameShortcuts.options_openned
+	visible = GameShortcuts.options_opened
 	backdrop.visible = visible
 	GameShortcuts.options_open_close.connect(_on_options_open_close)
 	render_options()
@@ -111,13 +111,13 @@ func _on_option_value_changed(sector_name: String, key_name: String, _type: Opti
 
 func _on_options_open_close(is_open: bool):
 	if is_open:
-		visible = GameShortcuts.options_openned
+		visible = GameShortcuts.options_opened
 		backdrop.visible = visible
 		animation_player.play("options_open")
 	else:
 		animation_player.play_backwards("options_open")
 		await animation_player.animation_finished
-		visible = GameShortcuts.options_openned
+		visible = GameShortcuts.options_opened
 		backdrop.visible = visible
 
 
@@ -127,4 +127,3 @@ func _on_backdrop_mouse_entered():
 
 func _on_backdrop_mouse_exited():
 	mouse_over_backdrop = false
-

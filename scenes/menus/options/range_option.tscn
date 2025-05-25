@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://vkka713wjfg7"]
 
-[ext_resource type="Script" path="res://scripts/menus/options/menu_option.gd" id="1_b1p3e"]
+[ext_resource type="Script" uid="uid://cl1a7uhy6vckl" path="res://scripts/menus/options/menu_option.gd" id="1_b1p3e"]
 
 [node name="RangeOption" type="MarginContainer"]
 anchors_preset = 14

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6mxdluhknu2o"]
 
-[ext_resource type="Script" path="res://scripts/menus/options/menu_option.gd" id="1_rhtki"]
+[ext_resource type="Script" uid="uid://cl1a7uhy6vckl" path="res://scripts/menus/options/menu_option.gd" id="1_rhtki"]
 
 [node name="ToggleOption" type="MarginContainer"]
 anchors_preset = 14
